@@ -6,7 +6,7 @@ import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 
 public class MHMods_ParticleAccelerator extends BaseHullMod {
 
-	public final float SpeedBonus = 80f;
+	public final float SpeedBonus = 25f;
 
 	public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
 		stats.getProjectileSpeedMult().modifyPercent(id , SpeedBonus);

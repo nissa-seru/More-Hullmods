@@ -6,9 +6,9 @@ import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 
 public class MHMods_TorpedoSpec extends BaseHullMod {
 
-	public final float SpeedBonus = 35f;
-	public final float MTurn = 40f;
-
+	public final int SpeedBonus = 20;
+	public final int MTurn = 25;
+	public final int HullBonus = 10;
 
 	@Override
 	public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
@@ -16,15 +16,13 @@ public class MHMods_TorpedoSpec extends BaseHullMod {
 		stats.getMissileAccelerationBonus().modifyPercent(id, SpeedBonus);
 		stats.getMissileMaxTurnRateBonus().modifyPercent(id, -MTurn);
 		stats.getMissileTurnAccelerationBonus().modifyPercent(id, -MTurn);
+		stats.getMissileHealthBonus().modifyPercent(id, HullBonus);
 	}
 
 	public String getDescriptionParam(int index, HullSize hullSize) {
-        if (index == 0) {
-            return Math.round(SpeedBonus) + "%";
-        }
-        if (index == 1) {
-            return Math.round(MTurn) + "%";
-        }
+        if (index == 0) return SpeedBonus + "%";
+		if (index == 1) return HullBonus + "%";
+        if (index == 2) return MTurn + "%";
         return null;
     }
 }

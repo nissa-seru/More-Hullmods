@@ -6,21 +6,17 @@ import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 
 public class MHMods_VoltageRegulationSystem extends BaseHullMod {
 
-    public final float FluxCost = 15f;
-    public final float RangeBonus = 20f;
+    public final float FluxCost = 0.85f;
+    public final float RangeBonus = 0.8f;
 
 	public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
-		stats.getBeamWeaponFluxCostMult().modifyPercent(id , -FluxCost);
-		stats.getBeamWeaponRangeBonus().modifyPercent(id, -RangeBonus);
+		stats.getBeamWeaponFluxCostMult().modifyMult(id , FluxCost);
+		stats.getBeamWeaponRangeBonus().modifyMult(id, RangeBonus);
 	}
 
 	public String getDescriptionParam(int index, HullSize hullSize) {
-        if (index == 0) {
-            return Math.round(FluxCost) + "%";
-        }
-        if (index == 1) {
-            return Math.round(RangeBonus) + "%";
-        }
+        if (index == 0) return Math.round((1f - FluxCost) * 100) + "%";
+        if (index == 1) return Math.round((1f - RangeBonus) * 100) + "%";
         return null;
     }
 }

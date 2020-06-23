@@ -12,16 +12,16 @@ import java.util.Map;
 public class MHMods_EmergencyVentingSystem extends BaseHullMod {
 
 	private final float TriggerAt = 0.9f;
-	private final float RedPerCell = 0.85f;
-	private final float HardFluxVent = 0.3f;
-	private final float SoftFluxVent = 0.05f;
+	private final float RedPerCell = 0.9f;
+	private final float HardFluxVent = 0.5f;
+	private final float SoftFluxVent = 0.3f;
 
 	private final Map<HullSize, Integer> mag = new HashMap<>();
 	{
-		mag.put(HullSize.FRIGATE, 4);
-		mag.put(HullSize.DESTROYER, 5);
-		mag.put(HullSize.CRUISER, 6);
-		mag.put(HullSize.CAPITAL_SHIP, 7);
+		mag.put(HullSize.FRIGATE, 2);
+		mag.put(HullSize.DESTROYER, 3);
+		mag.put(HullSize.CRUISER, 4);
+		mag.put(HullSize.CAPITAL_SHIP, 5);
 	}
 
 	public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
