@@ -45,33 +45,41 @@ public class MHMods_UnstableShields extends BaseHullMod {
 	}
 
 	public void advanceInCombat(ShipAPI ship, float amount) {
+		float Instability = 0f;
+		float ShieldStart = 0f;
+
 		if (!ship.isAlive()) return;
+		if (Global.getCombatEngine().getCustomData().get("MHMods_Instability" + ship.getId()) instanceof Float)
+			Instability = (float) Global.getCombatEngine().getCustomData().get("MHMods_Instability" + ship.getId());
+
+		if (Global.getCombatEngine().getCustomData().get("MHMods_ShieldStart" + ship.getId()) instanceof Float)
+			ShieldStart = (float) Global.getCombatEngine().getCustomData().get("MHMods_ShieldStart" + ship.getId());
 
 		ship.getShield().setRingColor(new Color(255, 173, 173, 255));
 
-		float Instability = ship.getMutableStats().getDynamic().getStat("MHMods_UnstableShields_Instability").getModifiedValue();
 		float timer = Global.getCombatEngine().getTotalElapsedTime(false);
 
 		if (ship.getShield().isOff()) {
-			ship.getMutableStats().getDynamic().getStat("MHMods_UnstableShields_S").modifyFlat("MHMods_UnstableShields", timer);
-			ship.getMutableStats().getShieldAbsorptionMult().modifyMult("MHMods_UnstableShields_break", 1f);
+			ShieldStart = timer;
 			if (Instability > 0){
-				ship.getMutableStats().getDynamic().getStat("MHMods_UnstableShields_Instability").modifyFlat("Instability", Instability - ((1/ TimeToUnbrake) * amount));
+				Instability -= ((1/ TimeToUnbrake) * amount);
 			} else {
-				ship.getMutableStats().getDynamic().getStat("MHMods_UnstableShields_Instability").modifyFlat("Instability", 0);
+				Instability = 0f;
 			}
 		}
 
 		if (ship.getShield().isOn()) {
-			float timeShieldOn = timer - ship.getMutableStats().getDynamic().getStat("MHMods_UnstableShields_S").getModifiedValue() + 1;
+			float timeShieldOn = timer - ShieldStart;
 
 			if (timeShieldOn > StableTime){
 				if (Instability < 1)
-					ship.getMutableStats().getDynamic().getStat("MHMods_UnstableShields_Instability").modifyFlat("Instability", Instability + ((1/TimeToBrake) * amount));
+					Instability += ((1/TimeToBrake) * amount);
 				else
-					ship.getMutableStats().getDynamic().getStat("MHMods_UnstableShields_Instability").modifyFlat("Instability", 1);
+					Instability = 1f;
 			}
 		}
+		Global.getCombatEngine().getCustomData().put("MHMods_Instability" + ship.getId(), Instability);
+		Global.getCombatEngine().getCustomData().put("MHMods_ShieldStart" + ship.getId(), ShieldStart);
 
 		int ShieldRed = Math.round(ZeroEntropyColor.getRed() * (1 - Instability) + FullEntropyColor.getRed() * Instability);
 		int ShieldGreen = Math.round(ZeroEntropyColor.getGreen() * (1 - Instability) + FullEntropyColor.getGreen() * Instability);
@@ -79,9 +87,8 @@ public class MHMods_UnstableShields extends BaseHullMod {
 
 		ship.getShield().setInnerColor(new Color(ShieldRed, ShieldGreen, ShieldBlue, 200));
 
-		float BreakValue = 1 + (DmgInc * ship.getMutableStats().getDynamic().getStat("MHMods_UnstableShields_Instability").getModifiedValue());
-
-		ship.getMutableStats().getShieldAbsorptionMult().modifyMult("MHMods_UnstableShields_break", BreakValue);
+		float ShieldAbsorptionMult = 1 + (DmgInc * Instability);
+		ship.getMutableStats().getShieldAbsorptionMult().modifyMult("MHMods_UnstableShields_break", ShieldAbsorptionMult);
 
 		if (ship == Global.getCombatEngine().getPlayerShip()) {
 			Global.getCombatEngine().maintainStatusForPlayerShip("info", "graphics/icons/hullsys/fortress_shield.png", "Shield efficiency", String.valueOf((float) Math.round(ship.getMutableStats().getShieldAbsorptionMult().getModifiedValue() * 10) / 10), false);

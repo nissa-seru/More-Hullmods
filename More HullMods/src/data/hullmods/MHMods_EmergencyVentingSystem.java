@@ -45,22 +45,28 @@ public class MHMods_EmergencyVentingSystem extends BaseHullMod {
     @Override
 	public void advanceInCombat(ShipAPI ship, float amount) {
 		if (!ship.isAlive()) return;
+
+		int FusionCell_used = 0;
+		if (Global.getCombatEngine().getCustomData().get("FusionCell_used" + ship.getId()) instanceof Integer)
+			FusionCell_used = (int) Global.getCombatEngine().getCustomData().get("FusionCell_used" + ship.getId());
+
 		MutableShipStatsAPI stats = ship.getMutableStats();
-		float CellsUsed = ship.getMutableStats().getDynamic().getStat("MHMods_FusionCell_used").getModifiedValue();
 		float Flux = ship.getFluxTracker().getFluxLevel();
 		float SoftFlux = ship.getFluxTracker().getCurrFlux();
 		float HardFlux = ship.getFluxTracker().getHardFlux();
 
-		if (CellsUsed < mag.get(ship.getHullSize())) {
+		if (FusionCell_used < mag.get(ship.getHullSize())) {
 			if (Flux >= TriggerAt) {
 				ship.getFluxTracker().setHardFlux(HardFlux * HardFluxVent);
 				ship.getFluxTracker().setCurrFlux((SoftFlux - HardFlux) * SoftFluxVent + ship.getFluxTracker().getHardFlux());
-				ship.getMutableStats().getDynamic().getStat("MHMods_FusionCell_used").modifyFlat("FusionCells", CellsUsed + 1);
-				ship.getMutableStats().getDynamic().getStat("MHMods_FusionCell_MaxFluxMult").setBaseValue(ship.getMutableStats().getDynamic().getStat("MHMods_FusionCell_MaxFluxMult").getModifiedValue() * RedPerCell);
-				stats.getFluxCapacity().modifyMult("FusionCells", ship.getMutableStats().getDynamic().getStat("MHMods_FusionCell_MaxFluxMult").getModifiedValue());
+
+				FusionCell_used += 1;//ship.getMutableStats().getDynamic().getStat("FusionCell_used").modifyFlat("FusionCells", CellsUsed + 1);
+				Global.getCombatEngine().getCustomData().put("FusionCell_used" + ship.getId(), FusionCell_used);
+
+				stats.getFluxCapacity().modifyMult("MHMods_FusionCells", (float) Math.pow(RedPerCell, FusionCell_used));
 			}
 			if (ship == Global.getCombatEngine().getPlayerShip())
-				Global.getCombatEngine().maintainStatusForPlayerShip("info", "graphics/icons/hullsys/emp_emitter.png", "Cells left", Math.round(mag.get(ship.getHullSize()) - CellsUsed) + " Cells", false);
+				Global.getCombatEngine().maintainStatusForPlayerShip("info", "graphics/icons/hullsys/emp_emitter.png", "Cells left", Math.round(mag.get(ship.getHullSize()) - FusionCell_used) + " Cells", false);
 		}
 		else if (ship == Global.getCombatEngine().getPlayerShip())
 			Global.getCombatEngine().maintainStatusForPlayerShip("info", "graphics/icons/hullsys/emp_emitter.png", "Cells left", "Out of cells", false);
