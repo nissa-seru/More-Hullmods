@@ -1,0 +1,8 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_integratedarmor",
+            "mhmods_weaponinhibitor"
+        ]
+    }
+}

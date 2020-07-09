@@ -1,0 +1,8 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_hyperengineupgrade",
+			"mhmods_particleaccelerator"
+        ]
+    }
+}

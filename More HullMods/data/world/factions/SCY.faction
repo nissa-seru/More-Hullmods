@@ -1,0 +1,8 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_unstableshields",
+			"mhmods_fluxoverdrive"
+        ]
+    }
+}

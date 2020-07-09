@@ -1,0 +1,8 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_fluxbooster",
+			"mhmods_emergencyventingsystem"
+        ]
+    }
+}

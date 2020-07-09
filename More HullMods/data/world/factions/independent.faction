@@ -1,0 +1,8 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_weaponinhibitor",
+            "mhmods_explorationrefit"
+        ]
+    }
+}

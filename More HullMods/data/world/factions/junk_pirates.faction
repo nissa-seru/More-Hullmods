@@ -1,0 +1,8 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_FuelAdditive",
+            "mhmods_unstableshields"
+        ]
+    }
+}

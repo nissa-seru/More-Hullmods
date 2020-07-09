@@ -1,0 +1,9 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_unstableshields",
+            "mhmods_hyperengineupgrade",
+			"mhmods_hyperengineupgrade"
+        ]
+    }
+}

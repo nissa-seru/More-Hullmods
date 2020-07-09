@@ -1,0 +1,8 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_bombardmentpackage",
+            "mhmods_integratedarmor"
+        ]
+    }
+}

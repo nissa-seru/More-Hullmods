@@ -1,0 +1,8 @@
+{
+    "knownHullMods":{
+        "hullMods":[
+            "mhmods_voltageregulationsystem",
+			"mhmods_emergencyventingsystem"
+        ]
+    }
+}
