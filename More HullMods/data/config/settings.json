@@ -2,4 +2,10 @@
     "designTypeColors":{
 	"MHM inc":[255, 70, 0, 255]
 	},
+	"graphics":{
+		"systems":{
+			"mhmods_fluxbooster":"graphics/icons/hullsys/mhmods_fluxbooster.png",
+			"mhmods_hullfoam":"graphics/icons/hullsys/mhmods_hullfoam.png",
+		}
+	}
 }
