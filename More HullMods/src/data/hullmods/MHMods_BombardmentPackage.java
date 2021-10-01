@@ -13,7 +13,7 @@ public class MHMods_BombardmentPackage extends BaseLogisticsHullMod {
 
 	public final Map<HullSize, Float> mag = new HashMap<>();
 	{
-		mag.put(HullSize.FIGHTER, 10f);
+		mag.put(HullSize.FIGHTER, 25f);
 		mag.put(HullSize.FRIGATE, 25f);
 		mag.put(HullSize.DESTROYER, 50f);
 		mag.put(HullSize.CRUISER, 100f);

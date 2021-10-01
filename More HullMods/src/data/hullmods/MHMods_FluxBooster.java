@@ -7,6 +7,7 @@ import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.combat.ShipVariantAPI;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ public class MHMods_FluxBooster extends BaseHullMod {
     private final Map<HullSize, Integer> maneuverBonusMap = new HashMap<>();
 
     {
+        maneuverBonusMap.put(HullSize.FIGHTER, 50);
         maneuverBonusMap.put(HullSize.FRIGATE, 50);
         maneuverBonusMap.put(HullSize.DESTROYER, 75);
         maneuverBonusMap.put(HullSize.CRUISER, 100);
@@ -71,6 +73,8 @@ public class MHMods_FluxBooster extends BaseHullMod {
                 stats.getDeceleration().modifyPercent("MHMods_FluxBuster", 1f + maneuverBonus * 2f * effectPower);
                 stats.getTurnAcceleration().modifyPercent("MHMods_FluxBuster", 1f + maneuverBonus * 2f * effectPower);
                 stats.getMaxTurnRate().modifyPercent("MHMods_FluxBuster", 1f + maneuverBonus * effectPower);
+                ship.getEngineController().fadeToOtherColor(this, new Color(153, 12, 184, 255), null, 0.75f, 0.75f);
+                ship.getEngineController().extendFlame(this, 1f, 0, 0.2f);
                 if (ship == Global.getCombatEngine().getPlayerShip())
                     Global.getCombatEngine().maintainStatusForPlayerShip("MHMods_FluxBuster", "graphics/icons/hullsys/mhmods_fluxbooster.png", "Booster Power", Math.round(timeLeft) + "", false);
             } else {

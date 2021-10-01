@@ -1,8 +1,17 @@
 {
     "knownHullMods":{
         "hullMods":[
-            "mhmods_voltageregulationsystem",
-			"mhmods_emergencyventingsystem"
+		"mhmods_antiarmorgammunition",
+		"mhmods_bombardmentpackage",
+		"mhmods_emergencyventingsystem",
+		"mhmods_fluxbooster",
+		"mhmods_fluxoverdrive",
+		"mhmods_FuelAdditive",
+		"MHMods_prefabricator",
+		"mhmods_splitChamber",
+		"mhmods_torpedospec",
+		"mhmods_voltageregulationsystem",
+		"mhmods_fluxgenerator",
         ]
     }
 }

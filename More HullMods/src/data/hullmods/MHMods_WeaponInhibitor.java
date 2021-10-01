@@ -15,8 +15,8 @@ public class MHMods_WeaponInhibitor extends BaseHullMod {
 		stats.getBallisticWeaponFluxCostMod().modifyMult(id, FluxUsage);
 		stats.getBallisticWeaponDamageMult().modifyMult(id, damage);
 	}
-	
-	 public String getDescriptionParam(int index, HullSize hullSize) {
+
+	public String getDescriptionParam(int index, HullSize hullSize) {
         if (index == 0) return Math.round((1f - FluxUsage) * 100) + "%";
         if (index == 1) return Math.round((1f - damage) * 100) + "%";
 		if (index == 2) return Math.round((1f - ROF) * 100) + "%";

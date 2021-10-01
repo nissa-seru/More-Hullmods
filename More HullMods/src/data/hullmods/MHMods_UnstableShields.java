@@ -5,8 +5,6 @@ import com.fs.starfarer.api.combat.BaseHullMod;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.combat.ShipAPI;
-import com.fs.starfarer.api.util.Misc;
-import com.fs.starfarer.prototype.Utils;
 
 import java.awt.*;
 import java.util.Map;

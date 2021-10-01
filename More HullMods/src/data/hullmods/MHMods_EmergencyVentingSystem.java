@@ -22,6 +22,7 @@ public class MHMods_EmergencyVentingSystem extends BaseHullMod {
 
 	private final Map<HullSize, Integer> mag = new HashMap<>();
 	{
+		mag.put(HullSize.FIGHTER, 5);
 		mag.put(HullSize.FRIGATE, 5);
 		mag.put(HullSize.DESTROYER, 4);
 		mag.put(HullSize.CRUISER, 3);

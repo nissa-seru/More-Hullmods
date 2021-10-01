@@ -14,7 +14,7 @@ public class MHMods_IntegratedArmor extends BaseHullMod {
     private final Map<HullSize, Integer> maxArmour = new HashMap<>();
 
     {
-        maxArmour.put(HullSize.FIGHTER, 250);
+        maxArmour.put(HullSize.FIGHTER, 500);
         maxArmour.put(HullSize.FRIGATE, 500);
         maxArmour.put(HullSize.DESTROYER, 1000);
         maxArmour.put(HullSize.CRUISER, 1500);

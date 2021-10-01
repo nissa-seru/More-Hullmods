@@ -6,8 +6,8 @@ import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 
 public class MHMods_TorpedoSpec extends BaseHullMod {
 
-	public final int SpeedBonus = 35;
-	public final int MTurn = 30;
+	public final int SpeedBonus = 30;
+	public final int MTurn = 25;
 	public final int HullBonus = 15;
 
 	@Override

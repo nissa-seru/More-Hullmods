@@ -1,5 +1,6 @@
 package data.hullmods;
 
+import Utilities.MHMods_utilities;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
@@ -14,7 +15,8 @@ public class MHMods_ExplorationRefit extends BaseLogisticsHullMod {
             SensorStrength = 50f,
             CR = 30f,
             CRRecovery = 0.25f,
-            EOMult = 0.80f;
+            EOMult = 0.8f,
+            MaxCargoFuelMulti = 0.85f;
 
 
     public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
@@ -28,15 +30,18 @@ public class MHMods_ExplorationRefit extends BaseLogisticsHullMod {
         stats.getSensorStrength().modifyPercent(id, SensorStrength * mult);
         stats.getMaxCombatReadiness().modifyFlat(id, (-CR * mult) / 100);
         stats.getBaseCRRecoveryRatePercentPerDay().modifyMult(id, 1 - (CRRecovery * mult));
+        stats.getCargoMod().modifyMult(id, MaxCargoFuelMulti);
+        stats.getFuelMod().modifyMult(id, MaxCargoFuelMulti);
     }
 
     public String getDescriptionParam(int index, HullSize hullSize, ShipAPI ship) {
-        if (index == 0) return Math.round(FuelUse * 100) + "%";
-        if (index == 1) return Math.round(SupUse * 100) + "%";
-        if (index == 2) return Math.round(SensorStrength) + "%";
-        if (index == 3) return Math.round(CR) + "%";
-        if (index == 4) return Math.round(CRRecovery * 100) + "%";
-        if (index == 5) return Math.round((1 - EOMult) * 100) + "%";
+        if (index == 0) return MHMods_utilities.floatToString(FuelUse * 100) + "%";
+        if (index == 1) return MHMods_utilities.floatToString(SupUse * 100) + "%";
+        if (index == 2) return MHMods_utilities.floatToString(SensorStrength) + "%";
+        if (index == 3) return MHMods_utilities.floatToString(CR) + "%";
+        if (index == 4) return MHMods_utilities.floatToString(CRRecovery * 100) + "%";
+        if (index == 5) return MHMods_utilities.floatToString(100 - EOMult * 100) + "%";
+        if (index == 6) return MHMods_utilities.floatToString(100 - MaxCargoFuelMulti * 100) + "%";
         return null;
     }
 }

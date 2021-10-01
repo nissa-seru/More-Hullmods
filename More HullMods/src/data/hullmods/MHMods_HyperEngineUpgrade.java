@@ -54,7 +54,7 @@ public class MHMods_HyperEngineUpgrade extends BaseHullMod {
             customCombatData.put("MHMods_HyperEngineUpgrade" + id, speedBoost);
         }
 
-        if (ship.getFluxTracker().isEngineBoostActive() && ship.getFluxLevel() <= 0.05f) {
+        if (ship.getFluxTracker().isEngineBoostActive() && ship.getFluxLevel() <= fluxThreshold) {
             ship.getMutableStats().getZeroFluxSpeedBoost().modifyFlat(id, speedBoost);
             ship.getEngineController().fadeToOtherColor(this, Engines_color, null, 1f, 0.6f);
             ship.getEngineController().extendFlame(this, 0.4f, 0.4f, 0.4f);

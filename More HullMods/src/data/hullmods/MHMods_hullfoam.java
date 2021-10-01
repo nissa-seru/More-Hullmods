@@ -1,5 +1,6 @@
 package data.hullmods;
 
+import Utilities.MHMods_utilities;
 import com.fs.starfarer.api.Global;
 import com.fs.starfarer.api.combat.BaseHullMod;
 import com.fs.starfarer.api.combat.ShipAPI;
@@ -14,29 +15,21 @@ public class MHMods_hullfoam extends BaseHullMod {
     final float maxFoam = 1f;
 
     {
-        repairSpeed.put(HullSize.FIGHTER, 4f);
-        repairSpeed.put(HullSize.FRIGATE, 2f);
-        repairSpeed.put(HullSize.DESTROYER, 1.5f);
-        repairSpeed.put(HullSize.CRUISER, 1f);
-        repairSpeed.put(HullSize.CAPITAL_SHIP, 0.5f);
+        repairSpeed.put(HullSize.FIGHTER, 1f);
+        repairSpeed.put(HullSize.FRIGATE, 1f);
+        repairSpeed.put(HullSize.DESTROYER, 0.8f);
+        repairSpeed.put(HullSize.CRUISER, 0.6f);
+        repairSpeed.put(HullSize.CAPITAL_SHIP, 0.4f);
     }
 
     @Override
     public String getDescriptionParam(int index, HullSize hullSize) {
-        if (index == 0) return floatToString(repairSpeed.get(HullSize.FRIGATE)) + "%";
-        if (index == 1) return floatToString(repairSpeed.get(HullSize.DESTROYER)) + "%";
-        if (index == 2) return floatToString(repairSpeed.get(HullSize.CRUISER)) + "%";
-        if (index == 3) return floatToString(repairSpeed.get(HullSize.CAPITAL_SHIP)) + "%";
-        if (index == 4) return floatToString(maxFoam * 100) + "%";
+        if (index == 0) return MHMods_utilities.floatToString(repairSpeed.get(HullSize.FRIGATE)) + "%";
+        if (index == 1) return MHMods_utilities.floatToString(repairSpeed.get(HullSize.DESTROYER)) + "%";
+        if (index == 2) return MHMods_utilities.floatToString(repairSpeed.get(HullSize.CRUISER)) + "%";
+        if (index == 3) return MHMods_utilities.floatToString(repairSpeed.get(HullSize.CAPITAL_SHIP)) + "%";
+        if (index == 4) return MHMods_utilities.floatToString(maxFoam * 100) + "%";
         return null;
-    }
-
-    public String floatToString(float number) {
-        if (number == Math.round(number)) {
-            return Math.round(number) + "";
-        } else {
-            return number + "";
-        }
     }
 
     @Override
