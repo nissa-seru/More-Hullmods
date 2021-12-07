@@ -10,7 +10,8 @@
 			"mhmods_particleaccelerator",
 			"mhmods_splitChamber",
 			"mhmods_torpedospec",
-			"mhmods_unstableshields"
+			"mhmods_unstableshields",
+			"mhmods_stiffMounts"
         ]
     }
 }

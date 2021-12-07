@@ -2,7 +2,8 @@
     "knownHullMods":{
         "hullMods":[
             "mhmods_integratedarmor",
-            "mhmods_weaponinhibitor"
+            "mhmods_weaponinhibitor",
+			"mhmods_stiffMounts"
         ]
     }
 }

@@ -19,6 +19,7 @@
 		"mhmods_voltageregulationsystem",
 		"mhmods_weaponinhibitor",
 		"mhmods_fluxgenerator",
+		"mhmods_stiffMounts"
         ]
     }
 }

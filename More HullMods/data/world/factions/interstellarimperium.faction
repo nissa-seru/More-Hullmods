@@ -12,6 +12,7 @@
 		"mhmods_torpedospec",
 		"mhmods_weaponinhibitor",
 		"mhmods_fluxgenerator",
+		"mhmods_stiffMounts"
         ]
     }
 }

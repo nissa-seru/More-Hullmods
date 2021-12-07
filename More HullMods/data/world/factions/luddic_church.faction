@@ -12,6 +12,7 @@
 		"mhmods_particleaccelerator",
 		"mhmods_splitChamber",
 		"mhmods_fluxgenerator",
+		"mhmods_stiffMounts"
         ]
     }
 }
