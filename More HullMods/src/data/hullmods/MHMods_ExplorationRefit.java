@@ -4,7 +4,6 @@ import Utilities.MHMods_utilities;
 import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
-import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.impl.hullmods.BaseLogisticsHullMod;
 
 public class MHMods_ExplorationRefit extends BaseLogisticsHullMod {
@@ -15,18 +14,11 @@ public class MHMods_ExplorationRefit extends BaseLogisticsHullMod {
             SensorStrength = 50f,
             CR = 30f,
             CRRecovery = 0.25f,
-            EOMult = 0.8f,
             MaxCargoFuelMulti = 0.85f;
 
 
     public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
         float mult = 1f;
-        /*
-        ShipVariantAPI variant = stats.getVariant();
-        if (variant != null && variant.hasHullMod("efficiency_overhaul")){
-            mult = EOMult;
-        }
-        */
         stats.getFuelUseMod().modifyMult(id, 1 - (FuelUse * mult));
         stats.getSuppliesPerMonth().modifyMult(id,  1 - (SupUse * mult));
         stats.getSensorStrength().modifyPercent(id, SensorStrength * mult);

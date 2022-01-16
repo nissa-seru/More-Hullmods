@@ -15,7 +15,6 @@ public class MHMods_stiffMounts extends BaseHullMod {
         stats.getMaxRecoilMult().modifyMult(id, 1f - (0.01f * recoilReduction));
         stats.getRecoilPerShotMult().modifyMult(id, 1f - (0.01f * recoilReduction));
         stats.getRecoilDecayMult().modifyMult(id, 1f - (0.01f * recoilReduction));
-
         stats.getWeaponTurnRateBonus().modifyMult(id, 1f - (0.01f * turnSpeedReduction));
     }
 
