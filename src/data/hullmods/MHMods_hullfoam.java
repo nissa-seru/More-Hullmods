@@ -13,7 +13,7 @@ public class MHMods_hullfoam extends BaseHullMod {
 
     final Map<HullSize, Float> repairSpeed = new HashMap<>();
     final float maxFoam = 1f;
-
+    final float maxRepairReductionPerUsed = 0.5f;
     {
         repairSpeed.put(HullSize.FIGHTER, 1f);
         repairSpeed.put(HullSize.FRIGATE, 1f);
@@ -29,6 +29,7 @@ public class MHMods_hullfoam extends BaseHullMod {
         if (index == 2) return MHMods_utilities.floatToString(repairSpeed.get(HullSize.CRUISER)) + "%";
         if (index == 3) return MHMods_utilities.floatToString(repairSpeed.get(HullSize.CAPITAL_SHIP)) + "%";
         if (index == 4) return MHMods_utilities.floatToString(maxFoam * 100) + "%";
+        if (index == 5) return MHMods_utilities.floatToString((1 - maxRepairReductionPerUsed) * 100) + "%";
         return null;
     }
 
@@ -44,19 +45,22 @@ public class MHMods_hullfoam extends BaseHullMod {
             foamLeft = (float) customCombatData.get("MHMods_hullfoam" + id);
 
         float currentHP = ship.getHitpoints();
-        float missingHP = 1f - ship.getHullLevel();
-        float repairThatFrame = repairSpeed.get(ship.getHullSize()) * 0.01f * amount;
-        if (missingHP < repairThatFrame) repairThatFrame = missingHP;
+        float repairReduction = maxRepairReductionPerUsed * (1 - foamLeft);
+        float missingHP = Math.max(0f,1f - repairReduction - ship.getHullLevel());
+        if (missingHP > 0){
+            float repairThatFrame = repairSpeed.get(ship.getHullSize()) * 0.01f * amount;
+            if (missingHP < repairThatFrame) repairThatFrame = missingHP;
 
-        float hullToRepair = ship.getMaxHitpoints() * repairThatFrame;
-        float percentRepaired = ship.getMaxHitpoints() * repairThatFrame / ship.getHullSpec().getHitpoints();
-        if (percentRepaired > foamLeft) {
-            percentRepaired = foamLeft;
-            hullToRepair = ship.getHullSpec().getHitpoints() * percentRepaired;
+            float hullToRepair = ship.getMaxHitpoints() * repairThatFrame;
+            float percentRepaired = ship.getMaxHitpoints() * repairThatFrame / ship.getHullSpec().getHitpoints();
+            if (percentRepaired > foamLeft) {
+                percentRepaired = foamLeft;
+                hullToRepair = ship.getHullSpec().getHitpoints() * percentRepaired;
+            }
+            ship.setHitpoints(currentHP + hullToRepair);
+
+            foamLeft -= percentRepaired;
         }
-        ship.setHitpoints(currentHP + hullToRepair);
-
-        foamLeft -= percentRepaired;
 
         if (ship == Global.getCombatEngine().getPlayerShip()) {
             if (foamLeft != 0) {

@@ -9,7 +9,7 @@ public class MHMods_FuelAdditive extends BaseLogisticsHullMod {
 
 	public final float Fuel_Cons = 0.8f;
 	public final float BURN_LEVEL_BONUS = 1f;
-	public final float MAINTENANCE_MULT = 1.25f;
+	public final float MAINTENANCE_MULT = 1.2f;
 
 	public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
 		stats.getMaxBurnLevel().modifyFlat(id, BURN_LEVEL_BONUS);

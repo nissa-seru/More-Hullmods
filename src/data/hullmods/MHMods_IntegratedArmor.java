@@ -1,6 +1,7 @@
 package data.hullmods;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.combat.MutableShipStatsAPI;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.combat.ShipAPI.HullSize;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
@@ -19,8 +20,8 @@ import static Utilities.mhmods_eneableSmod.getEnable;
 public class MHMods_IntegratedArmor extends mhmods_baseSHmod {
 
     final float
-            MinArmor = 0.05f,
-            addForSMod = 500;
+            minArmorMulti = 6f,
+            armorMulti = 0.5f;
 
     private final Map<HullSize, Integer> maxArmour = new HashMap<>();
 
@@ -35,26 +36,18 @@ public class MHMods_IntegratedArmor extends mhmods_baseSHmod {
     }
 
     @Override
-    public void applyEffectsAfterShipCreation(ShipAPI ship, String id) {
-        float maxArmor = maxArmour.get(ship.getHullSize());
-        //Smod part
-        if (ship.getVariant().getSMods().contains(this.id) && getEnable()) maxArmor += addForSMod;
-        if (ship.getArmorGrid().getArmorRating() > maxArmor) {
-            ship.getMutableStats().getMinArmorFraction().modifyFlat(id, MinArmor * (maxArmor / ship.getArmorGrid().getArmorRating()));
-        } else {
-            ship.getMutableStats().getMinArmorFraction().modifyFlat(id, MinArmor);
-        }
+    public void applyEffectsBeforeShipCreation(HullSize hullSize, MutableShipStatsAPI stats, String id) {
+        stats.getMinArmorFraction().modifyMult(id, minArmorMulti);
+        stats.getArmorBonus().modifyMult(id, armorMulti);
     }
 
     public String getDescriptionParam(int index, HullSize hullSize) {
-        if (index == 0) return (Math.round(100 * MinArmor) + "%");
-        if (index == 1) return "" + Math.round(maxArmour.get(HullSize.FRIGATE) * MinArmor);
-        if (index == 2) return "" + Math.round(maxArmour.get(HullSize.DESTROYER) * MinArmor);
-        if (index == 3) return "" + Math.round(maxArmour.get(HullSize.CRUISER) * MinArmor);
-        if (index == 4) return "" + Math.round(maxArmour.get(HullSize.CAPITAL_SHIP) * MinArmor);
+        if (index == 0) return (Math.round(100 * minArmorMulti) + "%");
+        if (index == 1) return (Math.round(100 * armorMulti) + "%");
         return null;
     }
 
+    /*
     @Override
     public void addPostDescriptionSection(TooltipMakerAPI tooltip, HullSize hullSize, ShipAPI ship, float width, boolean isForModSpec) {
         if (!getEnable()) return;
@@ -84,5 +77,7 @@ public class MHMods_IntegratedArmor extends mhmods_baseSHmod {
 
         label.setHighlightColors(s, s, s, s);
     }
+
+     */
 
 }

@@ -37,10 +37,10 @@ public class MHMods_prefabricator extends mhmods_baseSHmod {
 
     @Override
     public String getDescriptionParam(int index, HullSize hullSize) {
-        if (index == 0) return "" + fabricationTime.get(HullSize.FRIGATE);
-        if (index == 1) return "" + fabricationTime.get(HullSize.DESTROYER);
-        if (index == 2) return "" + fabricationTime.get(HullSize.CRUISER);
-        if (index == 3) return "" + fabricationTime.get(HullSize.CAPITAL_SHIP);
+        if (index == 0) return String.valueOf(fabricationTime.get(HullSize.FRIGATE));
+        if (index == 1) return String.valueOf(fabricationTime.get(HullSize.DESTROYER));
+        if (index == 2) return String.valueOf(fabricationTime.get(HullSize.CRUISER));
+        if (index == 3) return String.valueOf(fabricationTime.get(HullSize.CAPITAL_SHIP));
         if (index == 4) return "removes";
         return null;
     }
@@ -63,11 +63,11 @@ public class MHMods_prefabricator extends mhmods_baseSHmod {
                 float ammo = w.getSpec().getAmmoPerSecond() * fabricationTime.get(ship.getHullSize()) * ship.getMutableStats().getMissileAmmoRegenMult().getModifiedValue();
                 w.setMaxAmmo(w.getMaxAmmo() + Math.round(ammo));
                 w.getAmmoTracker().setAmmo(w.getAmmo() + Math.round(ammo));
+
+                if (ship.getVariant().getSMods().contains(this.id) && getEnable()) w.getAmmoTracker().setAmmoPerSecond(w.getSpec().getAmmoPerSecond() * ammoregenSmod);
+                    else w.getAmmoTracker().setAmmoPerSecond(0);
             }
         }
-        ship.getMutableStats().getMissileAmmoRegenMult().modifyMult("MHMods_prefabricator", 0);
-        if (ship.getVariant().getSMods().contains(this.id) && getEnable())
-            ship.getMutableStats().getMissileAmmoRegenMult().modifyMult("MHMods_prefabricator", ammoregenSmod);
 
         customCombatData.put("MHMods_prefabricator" + id, true);
     }

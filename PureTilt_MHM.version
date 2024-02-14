@@ -5,8 +5,7 @@
     "modVersion":
     {
         "major":1,
-        "minor":11,
-        "patch":1,
+        "minor":12,
+        "patch":0,
     },
-    "directDownloadURL":"https://github.com/PureTilt/More-Hullmods/releases/latest/download/More.HullMods.zip",
 }

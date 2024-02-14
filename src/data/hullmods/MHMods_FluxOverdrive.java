@@ -8,8 +8,8 @@ import com.fs.starfarer.api.combat.ShipAPI;
 
 public class MHMods_FluxOverdrive extends BaseHullMod {
 
-	public final float BonusDMG = 25f;
-	public final float FluxCost = 25f;
+	public final float BonusDMG = 30f;
+	public final float FluxCost = 30f;
 
 	public String getDescriptionParam(int index, HullSize hullSize) {
 		if (index == 0) return Math.round(BonusDMG) + "%";

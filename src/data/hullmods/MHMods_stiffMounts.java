@@ -7,8 +7,8 @@ import com.fs.starfarer.api.combat.ShipAPI;
 
 public class MHMods_stiffMounts extends BaseHullMod {
 
-    public final float recoilReduction = 30f;
-    public final float turnSpeedReduction = 15f;
+    final float recoilReduction = 35f;
+    final float turnSpeedReduction = 10f;
 
     @Override
     public void applyEffectsBeforeShipCreation(ShipAPI.HullSize hullSize, MutableShipStatsAPI stats, String id) {

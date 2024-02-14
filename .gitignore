@@ -3,5 +3,3 @@
 *.zip
 .gitattributes
 out
-.idea
-*.iml

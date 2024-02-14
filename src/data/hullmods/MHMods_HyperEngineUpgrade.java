@@ -65,8 +65,8 @@ public class MHMods_HyperEngineUpgrade extends mhmods_baseSHmod {
         }
         String boost = "zero flux boost - ship base speed/3 + 20 /n (exact number on install)";
         if (ship != null) {
-            float zerofluxboost = 20f + ship.getMutableStats().getZeroFluxSpeedBoost().getModifiedValue() - ship.getMutableStats().getMaxSpeed().getModifiedValue() / 3f;
-            boost = Math.round(zerofluxboost) + "";
+            float zeroFluxBoost = 20f + ship.getMutableStats().getZeroFluxSpeedBoost().getModifiedValue() - ship.getMutableStats().getMaxSpeed().getModifiedValue() / 3f;
+            boost = String.valueOf(Math.round(zeroFluxBoost));
         }
 
         HullModSpecAPI hullmod = Global.getSettings().getHullModSpec(id);
