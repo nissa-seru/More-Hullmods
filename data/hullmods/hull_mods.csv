@@ -1,5 +1,5 @@
 name,id,tier,rarity,tags,uiTags,base value,unlocked,hidden,hiddenEverywhere,tech/manufacturer,cost_frigate,cost_dest,cost_cruiser,cost_capital,script,desc,sModDesc,short,sprite
-Anti Armor Ammunition,mhmods_antiarmorgammunition,2,,"special, offensive",Weapons,15000,,,,MHM inc,5,10,15,25,data.hullmods.MHMods_ArmorPiercingAmmunition,"Increase damage of non missile weapons by factor of %s and flux cost by by factor of %s, reduces their fire rate by by factor of %s.",,more dmg to armor,graphics/hullmods/MHMods_Armor Piercing Ammunition.png
+Anti Armor Ammunition,mhmods_antiarmorgammunition,2,,"special, offensive",Weapons,15000,,,,MHM inc,5,10,15,25,data.hullmods.MHMods_ArmorPiercingAmmunition,Increases hit strength for armor damage reduction calculation of all weapons by %s but reduces damage to shield of all weapons by %s.,,more dmg to armor,graphics/hullmods/MHMods_Armor Piercing Ammunition.png
 Bombardment Package,mhmods_bombardmentpackage,1,,"special, req_spaceport","Requires Dock, Logistics",7500,,,,MHM inc,5,10,15,25,data.hullmods.MHMods_BombardmentPackage,"Package for precision orbital bombardment. Increases the effective strength of planetary raids by %s/%s/%s/%s depending on hull size, up to the total number of marines in the fleet, also reduces bombardment cost for the same amount.
 
 Not compatible with Ground Support Package.",,,graphics/hullmods/MHMods_Bombardment.png
@@ -17,7 +17,7 @@ Allow 0-flux speed boost to be active at any flux level, as long as the ship is 
 
 Disabled while ship venting.",,,graphics/hullmods/MHMods_fluxGenerator.png
 Flux Overdrive,mhmods_fluxoverdrive,2,,"special, offensive",Weapons,15000,,,,MHM inc,5,10,15,25,data.hullmods.MHMods_FluxOverdrive,Increase damage and flux cost of energy and ballistic weapons as flux level rise up to %s at max flux.,,,graphics/hullmods/MHMods_Flux Overdrive.png
-Fuel Additive,mhmods_FuelAdditive,2,,"special, req_spaceport","Requires Dock, Logistics",10000,,,,MHM inc,5,10,15,25,data.hullmods.MHMods_FuelAdditive,"Special additive for anti-material fuel increase its efficiency.
+Fuel Additive,mhmods_FuelAdditive,2,,"special, req_spaceport","Requires Dock, Logistics",10000,,,,MHM inc,5,10,15,25,data.hullmods.MHMods_FuelAdditive,"Special additive for anti-matter fuel increase its efficiency.
 
 Reduces fuel consumption by %s and increase maximum burn by %s. But increases maintenance by %s.",,,graphics/hullmods/MHMods_Fuel Additive2.png
 Hullfoam Dispenser,mhmods_hullfoam,2,,"special, req_spaceport, defensive",Defenses,7500,,,,MHM inc,5,10,15,25,data.hullmods.MHMods_hullfoam,Repair ship's hull at rate of %s/%s/%s/%s max hull per second. Repairs limited to %s of base hull per combat. As hull foams runs out maximum hull level it can bring ship will linearly decrese to %s.,,,graphics/hullmods/MHMods_Hullfoam.png

@@ -23,9 +23,6 @@ public class MHMods_FuelAdditive extends BaseLogisticsHullMod {
 		if (index == 2) return Math.round((MAINTENANCE_MULT - 1f) * 100f) + "%";
 		return null;
 	}
-
-
-
 }
 
 

@@ -20,8 +20,8 @@ import static Utilities.mhmods_eneableSmod.getEnable;
 public class MHMods_IntegratedArmor extends mhmods_baseSHmod {
 
     final float
-            minArmorMulti = 6f,
-            armorMulti = 0.5f;
+            minArmorMulti = 5f,
+            armorMulti = 0.8f;
 
     private final Map<HullSize, Integer> maxArmour = new HashMap<>();
 
